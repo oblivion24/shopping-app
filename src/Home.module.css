@@ -1,0 +1,32 @@
+
+.productContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.product {
+    background-color: rgb(70, 70, 67);
+    width:300px;
+    display:flex; 
+    flex-direction:column; 
+    flex-wrap:wrap;
+    align-items: center;
+    padding: 10px;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.heroContainer {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    justify-content: space-around;
+}
+.heroButtons {
+    display: flex;
+    gap: 40px;
+}
