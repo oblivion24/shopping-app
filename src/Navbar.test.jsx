@@ -25,8 +25,15 @@ describe("icon click on the navbar", () => {
     render(<Navbar />);
     const icon = screen.getByTestId("profile-icon");
     await userEvent.click(icon);
-    console.log(mockAlert.mock.calls);
-
     expect(mockAlert).toHaveBeenCalledWith("clicked");
   });
+  it("cart icon working", async() => {
+    // const mockAlert = vi.fn();
+    // window.alert = mockAlert;
+    render(<Navbar />);
+    const icon = screen.getByTestId("cart-icon");
+    await userEvent.click(icon);
+    expect(screen.getByRole("heading", { name: /Your Cart Items/i })).toBeInTheDocument();
+
+  })
 });

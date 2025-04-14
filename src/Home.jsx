@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import  CartContext  from "./context/CartContext";
+
 import Navbar from "./Navbar";
 import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 
 function Product(props) {
-  const cartArray = [];
-  function handleAddToCart(product) {
-    cartArray.push(product)
-  }
+  const { addToCart } = useContext(CartContext);
+
+  // function handleAddToCart(product) {
+  //   console.log("item added to cart");
+  //   cartArray.push(product);
+  //   console.log(cartArray);
+  // }
   return (
     <div>
       <h3>{props.category[0].category}</h3>
@@ -22,7 +28,7 @@ function Product(props) {
             />
             <h4>{product.title}</h4>
             <h4>${product.price}</h4>
-            <button onClick={() => {handleAddToCart(product)}}>Add to Cart</button>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
           </div>
         ))}
       </div>
@@ -113,7 +119,8 @@ function Hero() {
     </div>
   );
 }
-const Home = () => {
+
+function Home() {
   return (
     <div>
       <Navbar />
