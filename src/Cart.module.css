@@ -1,0 +1,38 @@
+
+.cartBox {
+    height: 100%;
+     display: flex;
+    flex-direction: column; 
+    padding: 10px;
+}
+.cartItems {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+.cartItems button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.header {
+    display:flex;
+    justify-content:space-between;
+}
+.header button {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+.header button :hover {
+    color: red;
+    transform: scale(1.5);
+}

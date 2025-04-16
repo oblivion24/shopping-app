@@ -5,18 +5,40 @@ const CartContext = createContext();
 
 // 2. Create the provider component
 export function CartProvider({ children }) {
-  const [ cartItems, setCartItems ] = useState([]);
-  function addToCart(item) {
-    setCartItems(prevItems => [...prevItems, item]);
+  const [cartItems, setCartItems] = useState([]);
+  function addToCart(product) {
+    setCartItems((prevItems) => {
+      if (prevItems.find((item) => item.id === product.id)) {
+        return prevItems.map((item) => {
+          if (item.id === product.id) {
+            return { ...item, quantity: item.quantity + 1 };
+          } else {
+            return item;
+          }
+        });
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }];
+      }
+    });
   }
   function deleteFromCart(product) {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== product.id));
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== product.id)
+    );
   }
   function clearAllCartItems() {
     setCartItems([]);
   }
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, addToCart, deleteFromCart, clearAllCartItems }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        setCartItems,
+        addToCart,
+        deleteFromCart,
+        clearAllCartItems,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

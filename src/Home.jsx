@@ -1,34 +1,48 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import  CartContext  from "./context/CartContext";
-
+import CartContext from "./context/CartContext";
+import Cart from "./Cart";
 import Navbar from "./Navbar";
 import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
+import navStyle from "./Navbar.module.css";
 
 function Product(props) {
   const { addToCart } = useContext(CartContext);
-
-  // function handleAddToCart(product) {
-  //   console.log("item added to cart");
-  //   cartArray.push(product);
-  //   console.log(cartArray);
-  // }
   return (
     <div>
-      <h3>{props.category[0].category}</h3>
+      {/* <h3>{props.category[0].category}</h3> */}
       <div className={styles.productContainer}>
         {props.category.map((product) => (
           <div key={product.id} className={styles.product}>
             <img
+              className={styles.productImage}
               src={product.image}
               alt={product.title}
-              width="220"
-              height="250"
             />
             <h4>{product.title}</h4>
-            <h4>${product.price}</h4>
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "10",
+              }}
+            >
+              <h4>${product.price}</h4>
+              <button
+                onClick={() => addToCart(product)}
+                style={{
+                  backgroundColor: "blue",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "999px",
+                  padding: "8px 16px",
+                  cursor: "pointer",
+                }}
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -59,21 +73,22 @@ function ProductContainer() {
       });
   }, []);
 
-  const jewelery = products.filter((product) => {
-    return product.category === "jewelery";
-  });
+  // const jewelery = products.filter((product) => {
+  //   return product.category === "jewelery";
+  // });
 
-  const electronics = products.filter((product) => {
-    return product.category === "electronics";
-  });
+  // const electronics = products.filter((product) => {
+  //   return product.category === "electronics";
+  // });
 
-  const menswear = products.filter((product) => {
-    return product.category === "men's clothing";
-  });
+  // const menswear = products.filter((product) => {
+  //   return product.category === "men's clothing";
+  // });
 
-  const womenswear = products.filter((product) => {
-    return product.category === "women's clothing";
-  });
+  // const womenswear = products.filter((product) => {
+  //   return product.category === "women's clothing";
+  // });
+
   //console.log(womenswear);
   // console.log(menswear);
   // console.log(electronics);
@@ -86,14 +101,16 @@ function ProductContainer() {
   return (
     <div>
       <h2>Featured Products</h2>
-      <Product category={menswear} />
+      <Product category={products} />
+      <hr />
+      {/* <Product category={menswear} />
       <hr />
       <Product category={womenswear} />
       <hr />
       <Product category={jewelery} />
       <hr />
       <Product category={electronics} />
-      <hr />
+      <hr /> */}
     </div>
   );
 }
@@ -108,25 +125,51 @@ function Hero() {
           comfort assured.
         </p>
         <div className={styles.heroButtons}>
-          <Link to="shop"><button>Shop Now</button></Link>
+          <Link to="shop">
+            <button>Shop Now</button>
+          </Link>
           <button>Featured Items</button>
         </div>
-        
       </div>
       <div>
-        <img src="src/assets/image.png" alt="stylish image" width="500"/>
+        <img src="src/assets/image.png" alt="stylish image" width="500" />
       </div>
     </div>
   );
 }
 
 function Home() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const closeCart = () => setIsCartOpen(false);
+  function toggleCart() {
+    //alert("cart icon clicked");
+    setIsCartOpen((prev) => !prev);
+  }
   return (
     <div>
-      <Navbar />
-      <Hero />
+      <div className={navStyle.stickyNavbar}>
+        <Navbar handleCart={toggleCart} />
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          height: "100vh",
+          width: "400px",
+          backgroundColor: "white",
+          zIndex: 2000,
+          transition: "transform 0.3s ease-in-out",
+          transform: isCartOpen ? "translateX(0)" : "translateX(100%)",
+          boxShadow: "-2px 0 8px rgba(0,0,0,0.1)", // optional: adds depth
+        }}
+      >
+        <Cart onClose={closeCart} />
+      </div>
+      <div style={{ paddingTop: "150px" }}>{<Hero />}</div>
       <ProductContainer />
     </div>
   );
-};
+}
 export default Home;
