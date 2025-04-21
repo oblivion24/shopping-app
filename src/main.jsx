@@ -2,21 +2,26 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
-import Home from "./Home";
+import App from "./App";
 import Shop from "./Shop";
-import Profile from "./Profile"
+import Profile from "./Profile";
+import Category from './Category';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
   },
   {
-    path: "shop",
+    path: "/shop",
     element: <Shop />,
   },
   {
-    path: "profile",
+    path: '/shop/:category',
+    element: <Category />,
+  },
+  {
+    path: "/profile",
     element: <Profile />
   }
 ]);

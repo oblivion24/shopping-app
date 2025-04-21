@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import CartContext from "./context/CartContext";
 import Cart from "./Cart";
@@ -51,66 +51,17 @@ function Product(props) {
 }
 
 function ProductContainer() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
-
-  // const jewelery = products.filter((product) => {
-  //   return product.category === "jewelery";
-  // });
-
-  // const electronics = products.filter((product) => {
-  //   return product.category === "electronics";
-  // });
-
-  // const menswear = products.filter((product) => {
-  //   return product.category === "men's clothing";
-  // });
-
-  // const womenswear = products.filter((product) => {
-  //   return product.category === "women's clothing";
-  // });
-
-  //console.log(womenswear);
-  // console.log(menswear);
-  // console.log(electronics);
-  // console.log(jewelery);
+  const { allProducts, error, loading } = useContext(CartContext);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (products.length === 0) return <div>No products found</div>; // Check array length instead
+  if (allProducts.length === 0) return <div>No products found</div>; // Check array length 
 
   return (
     <div>
       <h2>Featured Products</h2>
-      <Product category={products} />
+      <Product category={allProducts} />
       <hr />
-      {/* <Product category={menswear} />
-      <hr />
-      <Product category={womenswear} />
-      <hr />
-      <Product category={jewelery} />
-      <hr />
-      <Product category={electronics} />
-      <hr /> */}
     </div>
   );
 }
@@ -138,7 +89,17 @@ function Hero() {
   );
 }
 
-function Home() {
+function Home () {
+
+  return(
+    <div>
+      <div style={{ paddingTop: "150px" }}>{<Hero />}</div>
+      <ProductContainer />
+    </div>
+  )
+}
+
+function Navigation() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const closeCart = () => setIsCartOpen(false);
@@ -167,9 +128,8 @@ function Home() {
       >
         <Cart onClose={closeCart} />
       </div>
-      <div style={{ paddingTop: "150px" }}>{<Hero />}</div>
-      <ProductContainer />
     </div>
   );
 }
 export default Home;
+export {Product, Navigation}

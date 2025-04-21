@@ -1,5 +1,17 @@
 // App.jsx
 
-const App = () => <h1>Our First Test</h1>;
+import Home from "./Home";
+import {Navigation } from './Home';
+
+const App = () => {
+
+    return(
+        <div>
+            <Navigation />
+            <Home />
+            {/* <Footer /> */}
+        </div>
+    )
+}
 
 export default App;

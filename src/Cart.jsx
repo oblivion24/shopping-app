@@ -88,9 +88,9 @@ const Content = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             class="lucide lucide-trash"
             onClick={() => deleteFromCart(item)}
           >
@@ -110,6 +110,7 @@ const Cart = ({ onClose }) => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  
   return (
     <>
       <div className={styles.cartBox}>
