@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import CartContext from "./context/CartContext";
+import SearchBar from "./SearchBar";
 
 function Button(props) {
   return (
@@ -62,6 +63,7 @@ function CartIcon(props) {
     </div>
   );
 }
+
 const Navbar = ({ handleCart }) => {
   const navigate = useNavigate();
   const { cartItems } = useContext(CartContext);
@@ -95,7 +97,7 @@ const Navbar = ({ handleCart }) => {
         <option value="electronics">Electornics</option>
         <option value="jewelery">Jewelery</option>
       </select>
-      <input type="search" id="search" name="q" placeholder="Search..."></input>
+      <SearchBar />
       <ProfileIcon />
       <div>
         <CartIcon toggleCart={handleCart} />
