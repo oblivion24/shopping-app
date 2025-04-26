@@ -2,14 +2,14 @@
 
 import Home from "./Home";
 import {Navigation } from './Home';
-
+import Footer from "./Footer";
 const App = () => {
 
     return(
-        <div>
+        <div style={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
             <Navigation />
             <Home />
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 }

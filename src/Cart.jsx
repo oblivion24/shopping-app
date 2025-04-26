@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import CartContext from "./context/CartContext";
 import styles from "./Cart.module.css";
 
@@ -106,10 +106,9 @@ const Content = () => {
 
 const Cart = ({ onClose }) => {
   const { cartItems } = useContext(CartContext);
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const total = useMemo(() => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  }, [cartItems]);
   
   return (
     <>

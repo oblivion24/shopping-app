@@ -1,0 +1,37 @@
+
+  .heroContainer {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    justify-content: space-around;
+    justify-self: center;
+    background: radial-gradient(circle, #232831, #2d3748);
+    padding: 15px;
+  }
+  .heroButtons {
+    display: flex;
+    gap: 40px;
+  }
+
+  .visible {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .imageContainer {
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (max-width: 800px) {
+    .heroContainer {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  

@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import CartContext from "./context/CartContext";
 import { useContext } from "react";
 import { Product, Navigation } from "./Home";
+import styles from "./Category.module.css";
 
 const DefaultPage = () => {
     return(
@@ -61,10 +62,9 @@ const Category = () => {
   return (
     <div>
         <Navigation />
-      <h1 style={{ paddingTop: "150px" }}>Hello from Category page!</h1>
-      <p>So, how are you?</p>
+      <h1 className={styles.content}>Welcome to the Category Section</h1>
+      <p>Hope, you are enjoying shopping.</p>
       <hr />
-      <h2>The Category visited is here:</h2>
       {category === "menswear" ? (
         <MensWear />
       ) : category === "womenswear" ? (

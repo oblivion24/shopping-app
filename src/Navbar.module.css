@@ -1,12 +1,42 @@
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 10px;
     height: 100px;
     padding: 10px;
+    flex: 1 1 100px;
+    margin: 20px;
 }
-
+@media (max-width: 600px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    flex-shrink: 1;
+  }
+}
+.logoSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex: 1 1 100px;
+}
+.navButton {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 20px;
+  flex: 1 1 100px;
+}
+@media (max-width: 600px) {
+  .logoSection {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .profileIcon {
     cursor: pointer;
     stroke:#fff;
@@ -32,8 +62,8 @@
 }
 .cartCount {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -5px;
+  right: -5px;
   background-color: red;
   color: white;
   border-radius: 50%;
@@ -43,3 +73,48 @@
   min-width: 20px;
   text-align: center;
 }
+/* Profile icon container */
+.profileContainer {
+  position: relative;
+  display: inline-block;
+}
+
+/* Initially hide the dropdown */
+.dropdownMenu {
+  display: none; /* Dropdown is hidden by default */
+  position: absolute;
+  top: 100%; /* Position below the profile icon */
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+/* Hover over profile icon */
+.profileContainer:hover .dropdownMenu {
+  display: block; /* Show the dropdown when the profile icon is hovered */
+}
+
+/* Dropdown list items */
+.dropdownMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdownMenu li {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdownMenu li:last-child {
+  border-bottom: none;
+}
+
+/* Highlight when hovering over items */
+.dropdownMenu li:hover {
+  background-color: #f0f0f0;
+}
+

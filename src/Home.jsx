@@ -4,8 +4,8 @@ import CartContext from "./context/CartContext";
 import Cart from "./Cart";
 import Navbar from "./Navbar";
 import styles from "./Home.module.css";
-import { Link } from "react-router-dom";
 import navStyle from "./Navbar.module.css";
+import Hero from "./Hero";
 
 function Product(props) {
   const { addToCart } = useContext(CartContext);
@@ -29,16 +29,8 @@ function Product(props) {
               }}
             >
               <h4>${product.price}</h4>
-              <button
+              <button className={styles.addToCartButton}
                 onClick={() => addToCart(product)}
-                style={{
-                  backgroundColor: "blue",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "999px",
-                  padding: "8px 16px",
-                  cursor: "pointer",
-                }}
               >
                 Add to Cart
               </button>
@@ -58,32 +50,10 @@ function ProductContainer() {
   if (allProducts.length === 0) return <div>No products found</div>; // Check array length 
 
   return (
-    <div>
-      <h2>Featured Products</h2>
-      <Product category={allProducts} />
-      <hr />
-    </div>
-  );
-}
-
-function Hero() {
-  return (
-    <div className={styles.heroContainer}>
-      <div className={styles.hero}>
-        <h1>Style Meets Comfort at Gen-z Store</h1>
-        <p>
-          Discover trendy apparel for every occasion. Quality guaranteed,
-          comfort assured.
-        </p>
-        <div className={styles.heroButtons}>
-          <Link to="shop">
-            <button>Shop Now</button>
-          </Link>
-          <button>Featured Items</button>
-        </div>
-      </div>
+    <div className={styles.ProductContainers}>
+      <h2 style={{marginLeft:"20px"}}>Featured Products:</h2>
       <div>
-        <img src="src/assets/image.png" alt="stylish image" width="500" />
+        <Product category={allProducts} />
       </div>
     </div>
   );
@@ -93,7 +63,7 @@ function Home () {
 
   return(
     <div>
-      <div style={{ paddingTop: "150px" }}>{<Hero />}</div>
+      <div className={styles.heroSection}><Hero /></div>
       <ProductContainer />
     </div>
   )
