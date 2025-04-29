@@ -2,8 +2,6 @@ import styles from "./Hero.module.css";
 import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
 
-
-
 const Hero = () => {
   return (
     <div className={styles.heroContainer}>

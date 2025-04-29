@@ -1,6 +1,8 @@
 
   .heroContainer {
     display: flex;
+    width: 90%;
+    
     align-items: center;
     gap: 50px;
     justify-content: space-around;
@@ -31,6 +33,7 @@
   @media (max-width: 800px) {
     .heroContainer {
       display: flex;
+      width: 80%;
       flex-direction: column;
     }
   }

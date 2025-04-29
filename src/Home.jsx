@@ -25,9 +25,9 @@ function Product(props) {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                gap: "10",
+                gap: "10px",
               }}
-            >
+              >
               <h4>${product.price}</h4>
               <button className={styles.addToCartButton}
                 onClick={() => addToCart(product)}
@@ -84,17 +84,9 @@ function Navigation() {
       </div>
       <div
         style={{
-          position: "fixed",
-          top: 0,
-          right: 0,
-          height: "100vh",
-          width: "400px",
-          backgroundColor: "white",
-          zIndex: 2000,
-          transition: "transform 0.3s ease-in-out",
           transform: isCartOpen ? "translateX(0)" : "translateX(100%)",
-          boxShadow: "-2px 0 8px rgba(0,0,0,0.1)", // optional: adds depth
         }}
+        className={styles.cartSidebar}
       >
         <Cart onClose={closeCart} />
       </div>

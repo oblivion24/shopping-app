@@ -34,7 +34,7 @@ const Carousel = () => {
   }
 
   useEffect(() => {
-    if (isPaused) return; // 🛑 No auto-play when paused
+    if (isPaused) return; //  No auto-play when paused
 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
