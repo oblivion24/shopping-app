@@ -62,7 +62,7 @@ const Category = () => {
   return (
     <div>
         <Navigation />
-      <h1 className={styles.content}>Welcome to the Category Section</h1>
+      <h1 className={styles.content}>Welcome to the {category} Section</h1>
       <p>Hope, you are enjoying shopping.</p>
       <hr />
       {category === "menswear" ? (
