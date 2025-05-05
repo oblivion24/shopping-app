@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import styles from "./Carousel.module.css";
 const images = [
-  "src/assets/image.png",
-  "src/assets/images.jpeg",
-  "src/assets/images 2.jpeg",
-  "src/assets/images 3.jpeg",
+  "public/images/image.png",
+  "public/images/images.jpeg",
+  "public/images/images 2.jpeg",
+  "public/images/images 3.jpeg",
 ];
 
 const Carousel = () => {
